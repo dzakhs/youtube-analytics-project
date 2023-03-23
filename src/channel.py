@@ -15,7 +15,7 @@ class Channel:
         channel = youtube.channels().list(id=channel_id, part='snippet,statistics').execute()
         self.title = channel['items'][0]['snippet']['title']
         self.description = channel['items'][0]['snippet']['description']
-        self.url = channel['items'][0]['snippet']['thumbnails']['default']['url']
+        self.url = 'https://www.youtube.com/channel/' + channel_id
         self.subscribers = channel['items'][0]['statistics']['subscriberCount']
         self.video_count = channel['items'][0]['statistics']['videoCount']
         self.views = channel['items'][0]['statistics']['viewCount']
@@ -31,6 +31,15 @@ class Channel:
         return youtube
 
     def to_json(self, name):
+        data = {
+            "channel_id": self.__channel_id,
+            "title": self.title,
+            "description": self.description,
+            "url": self.url,
+            "subscribers_count": self.subscribers,
+            "video_count": self.video_count,
+            "view_count": self.views
+        }
         with open(name, 'w', encoding='utf-8') as file:
-            json.dump(self.print_info(), file, indent=2, ensure_ascii=False)
+            json.dump(data, file, indent=2, ensure_ascii=False)
 
