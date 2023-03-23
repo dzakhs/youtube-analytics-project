@@ -43,3 +43,6 @@ class Channel:
         with open(name, 'w', encoding='utf-8') as file:
             json.dump(data, file, indent=2, ensure_ascii=False)
 
+    #@property
+    #def channel_id(self):
+    #    return self.__channel_id
