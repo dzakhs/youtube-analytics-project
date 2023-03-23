@@ -46,3 +46,15 @@ class Channel:
     #@property
     #def channel_id(self):
     #    return self.__channel_id
+
+    def __str__(self):
+        return f'{self.title} ({self.url})'
+
+    def __add__(self, other):
+        return int(self.subscribers) + int(other.subscribers)
+
+    def __sub__(self, other):
+        return int(self.subscribers) - int(other.subscribers)
+
+    def __ge__(self, other):
+        return int(self.subscribers) >= int(other.subscribers)
